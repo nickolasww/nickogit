@@ -9,7 +9,7 @@ dimulai dengan membuat Git repository di komputer lokal, kemudian kita membuat s
    📄index.html
 ```
 
-masuk ke folder tersebut lalu jalankan perintah 'init project' terlebih dahulu.
+masuk ke folder tersebut lalu jalankan perintah 'git init' pada terminal terlebih dahulu.
 
 Lalu kita mengisi file `index.html` dengan code:
 
@@ -22,7 +22,13 @@ Lalu kita mengisi file `index.html` dengan code:
 </html>
 ```
 
-lakukan commit dengan pesan "initial commit"
+lakukan commit dengan pesan "Init" dengan terlebih dahulu melakukan staging kemudian commit:
+
+```bash
+git add .
+git commit -m "Init"
+
+```
 
 Kemudian kita membuat file berikutnya yaitu `test.html` dengan isi:
 
@@ -39,7 +45,9 @@ Namun kita tidak ingin file `test.html` di-commit di Git, karena file itu hanya 
 
 Lalu kita membuat folder di repository untuk menampung semua halaman dari aplikasi **mini-project** bernama `pages`.
 
-Selanjutnya kita menambahkan beberapa file disana yaitu `homepage.html`, `article.html` dan kita melakukan commit berikutnya dengan pesan "add: pages" commit ini sudah termasuk dengan file `.gitignore`.
+Selanjutnya kita menambahkan beberapa file disana yaitu `homepage.html`, `article.html`.
+
+**Lakukan Commit**. commit ini sudah termasuk dengan file `.gitignore`.
 
 Akhirnya strukture file dari aplikasi yang kita buat akan menjadi seperti ini:
 
@@ -89,13 +97,18 @@ Dan beberapa list judul artikel pada file `article.html` yaitu:
 </html>
 ```
 
-Selanjutnya, kita membuat commit untuk file `📄homepage.html` saja dengan pesan "add: homepage sections". Dan di commit berikutnya untuk file `article.html` dengan pesan "add: articles".
+Selanjutnya, kita membuat commit untuk file `📄homepage.html` saja. Dicommit berikutnya untuk file `article.html`
 
 ## Scenario 2
 
-membuat branch baru bernama `feature/dashboard`.
+membuat branch baru bernama `feature/dashboard` Kemudian branch utama, pindah ke branch `feature/dashboard`
 
-Dari branch utama, pindah ke branch `feature/dashboard` dan menambahkan file `dashboard.html` di folder pages.
+```bash
+git branch feature/dashboard
+git checkout feature/dashboard
+```
+
+Tambahkan file `dashboard.html` di folder pages.
 
 Sehingga struktur folder di branch `feature/dashboard` akan terlihat seperti ini:
 
@@ -111,7 +124,7 @@ Sehingga struktur folder di branch `feature/dashboard` akan terlihat seperti ini
    📄.gitignore
 ```
 
-Selanjutnya, kita menambahkan file tersebut dengan code:
+Selanjutnya, kita menambahkan file dashboard.html dengan code:
 
 ```html
 <html>
@@ -125,7 +138,7 @@ Selanjutnya, kita menambahkan file tersebut dengan code:
 </html>
 ```
 
-melakukan commit dengan pesan "add: chart 1 and chart 2"
+**Lakukan Commit**
 
 ## Scenario 3
 
@@ -150,7 +163,7 @@ kembali ke branch utama yaitu `master`. Lalu kita lanjutkan untuk mengerjakan fi
 </html>
 ```
 
-lakukan commit kembali dengan pesan "add: footer"
+**Lakukan Commit**
 
 ## Scenario 4
 
@@ -174,9 +187,14 @@ Lalu kita menambahkan code di file `dashborad.html` untuk menyelesaikannya:
 </html>
 ```
 
-jangan lupa untuk commit.
+**Lakukan Commit**
 
 Karena pekerjaan di branch tersebut telah selesai, maka kita melakukan penggabungan dari branch `feature/dashboard` ke branch `master`
+
+```bash
+git checkout master
+git merge feature/dashboard
+```
 
 Setelah branch digabungkan, edit file `article.html`. di sini kita tambahkan judul artikel:
 
@@ -195,7 +213,7 @@ Setelah branch digabungkan, edit file `article.html`. di sini kita tambahkan jud
 </html>
 ```
 
-Setelah menambahkan pertanyaan tersebut, kita lakukan commit dengan pesan "add: one article"
+Setelah menambahkan pertanyaan tersebut, kita **Lakukan Commit** dengan pesan
 
 Di commit kita selanjutnya menambahkan total 20 artikel:
 
@@ -217,9 +235,9 @@ Di commit kita selanjutnya menambahkan total 20 artikel:
 </html>
 ```
 
-Tidak lupa melakukan commit dengan pesan "add: 20 articles".
+**Lakukan Commit** 
 
-ternyata artikel yang diminta tidak sampai 20 melainkan hanya 5 saja. Akhirnya, di commit berikutnya kita **menghapus semua soal** tersebut dan menggantinya dengan 5 artikel:
+ternyata artikel yang diminta tidak sampai 20 melainkan hanya 5 saja. Akhirnya, di commit berikutnya kita **menghapus semua soal** tersebut dan menggantinya menjadi hanya 5 artikel dengan terlebih dahulu melakukan reset:
 
 ```html
 <html>
@@ -237,8 +255,7 @@ ternyata artikel yang diminta tidak sampai 20 melainkan hanya 5 saja. Akhirnya, 
 </body>
 </html>
 ```
-
-Tidak lupa melakukan commit dengan pesan "change: 20 to 5 article".
+**Lakukan Commit**
 
 ## Scenario 5
 
@@ -248,9 +265,15 @@ akan tetapi, dikarenakan kebutuhan artikel ternyata 20, kita melakukan **reset**
 
 Setelah melakukan revert, maka artikel sudah kita _rollback_ sehingga tidak perlu menulis ulang sebanyak 20 artikel.
 
+```bash
+git reset --hard <commitID_target>
+```
+
 ## Scenario 6
 
-Sekarang bayangkan sudut pandang kita sebagai **John**, kita akan melakukan cloning dan membuat branch baru bernama `feature/homepage-from-john`. Lalu kita pindah ke branch tersebut dan menambahkan beberapa materi pada file `home.html` yaitu:
+Karena kita akan bekerja sama dengan John, kita perlu memindahkan local repository kita ke remote repository agar john bisa mengakses source code kita. Hubungkan local repository dengan remote repository dengan menggunakan github.
+
+Sekarang **John** akan melakukan cloning dan membuat branch baru bernama `feature/homepage-from-john`. Lalu ia pindah ke branch tersebut dan menambahkan beberapa materi pada file `homepage.html` yaitu:
 
 ```html
 <html>
@@ -279,7 +302,7 @@ Sekarang bayangkan sudut pandang kita sebagai **John**, kita akan melakukan clon
 </html>
 ```
 
-Dan melakukan commit dengan pesan "add: section three and four" dan tidak lupa melakukan push beserta membuat Pull Request dari perubahan yang telah dilakukan, dengan judul PR: **add section three and four in homepage**.
+**Lakukan Commit** dan tidak lupa melakukan push beserta membuat Pull Request dari perubahan yang telah dilakukan, dengan judul PR: **add section three and four in homepage**.
 
 ## Scenario 7
 
@@ -308,7 +331,7 @@ Kembali lagi ke sudut pandang kita yang akan mengerjakan materi di branch `maste
 </html>
 ```
 
-Dan melakukan commit dengan pesan "add: qna section" dan tidak lupa melakukan push ke branch master di repo github yang sudah kita buat.
+**Lakukan Commit**  dan tidak lupa melakukan push ke branch master di repo github yang sudah kita buat.
 
 ## Scenario 8
 
@@ -325,3 +348,54 @@ Maka sekarang terlihat bahwa PR **John** sudah tidak terjadi conflict dan bisa d
 Setelah dilakukan penggabungan branch, maka kita bisa menghapus branch `feature/homepage-from-john` untuk menandakan bahwa pekerjaan di branch tersebut telah selesai.
 
 melakukan update di _local repository_ kita dengan melakukan penarikan _(**pull**)_ perubahan yang ada di remote.
+
+## Scenario 9
+
+Setelah pekerjaan selesai, John kembali ditugaskan untuk membuat feature login page dan kita diberikan tugas untuk membuat profile page. Pekerjaan dilakukan masing-masing dan dihubungkan dengan github.
+Sebelum melakukan pekerjaannya, dibuat branch masing-masing agar tidak saling mengganggu pekerjaan dan meningkatkan kolaborasi. Kita membuat branch `feature/profile` dan john melakukan pekerjaannya di branch `feature/login-from-john`
+
+Kita akan membuat file baru bernama `profile.html` didalam folder pages yang berisi kode sebagai berikut:
+
+```html
+<html>
+  <head>
+    <title>Profile</title>
+  </head>
+  <body>
+    <div>
+      <h1>Ahmad Faiz</h1>
+    </div>
+
+    <div>
+      <h1>Nomor Handphone: +62812xxxxxxxx</h1>
+    </div>
+  </body>
+</html>
+```
+
+Sedangkan John akan membuat file bernama `login.html` di dalam folder pages yang berisi kode sebagai berikut:
+
+```html
+<html>
+  <head>
+    <title>Login Page</title>
+  </head>
+  <body>
+    <form action="" method="post">
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" />
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" />
+    </form>
+  </body>
+</html>
+```
+
+Ternyata john sudah menyelesaikan pekerjaannya terlebih dahulu dan pekerjaannya sudah tergabung dengan main branch yaitu `master`. Kita akan menggunakan strategy yang berbeda dengan merge, yaitu rebase karena selain ingin melakukan keep upstream dengan main branch, kita juga ingin membuat commit history tetap clean, yaitu menggabungkan commit sama seperti merge tetapi tanpa membuat commit baru. Kita akan melakukan rebase dari branch `feature/profile` dengan branch `master`
+
+```bash
+git pull origin master --rebase
+```
+
+Saat ini seharusnya branch `feature/profile` sudah merupakan branch yang up-to-date dengan branch `master`
